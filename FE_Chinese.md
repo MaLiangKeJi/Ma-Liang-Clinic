@@ -13,7 +13,7 @@
 ## Links
 [English Document](FE_English.md)
 
-[官网](https://www.maliang.work)  | [后端文档](BE_Chinese.md)
+[官网](https://www.maliang.work)  | [后端文档](README.md)
 
 
 ## 运行前准备

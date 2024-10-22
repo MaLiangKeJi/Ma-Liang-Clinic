@@ -10,7 +10,7 @@ In this documentation, we will walk you through the project setup, the file conf
 
 ## Links
 
- [中文文档](BE_Chinese.md) 
+ [中文文档](README.md) 
 
 [Front-end documentation](FE_English.md) | [Official Website](https://www.maliang.work)
 
