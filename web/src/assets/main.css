@@ -1,0 +1,51 @@
+@import './base.css';
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (min-width: 1024px) {
+  body {
+    place-items: center;
+  }
+
+  #app {
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+
+.el-input-width-45{
+  width: 45%;
+}
+.el-input-width-100{
+  width: 100%;
+}
+.el-input-width-48{
+  width: 48%;
+}
+.el-input-width-2{
+  width: 2%;
+}
+.el-input-width-5{
+  width: 5%;
+}
+.el-input-width-30{
+  width: 30%;
+}
+.icon-text-gap {
+  margin-right: 0.5vw;
+}
+.position-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.default-font-size {
+  font-size: 1vw;
+}

@@ -1,0 +1,16 @@
+.el-button--primary {
+    color: #fff;
+    background-color: #6a5acd;
+    border-color: rgb(148, 197, 238);
+    font-size: 14px;
+    &:hover {
+      color: #fff;
+      background-color: #6a5acd;
+      border-color: #605bff;
+    }
+    &:active {
+      color: #fff;
+      background-color: #6a5acd;
+      border-color: #605bff;
+    }
+}
