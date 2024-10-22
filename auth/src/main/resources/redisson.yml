@@ -1,0 +1,8 @@
+# 单节点配置
+singleServerConfig:
+  # 数据库编号
+  database: 0
+  # 节点地址
+  address: redis://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:16379
+  # 密码
+  password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

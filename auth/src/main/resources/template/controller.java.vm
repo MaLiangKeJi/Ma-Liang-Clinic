@@ -1,0 +1,90 @@
+package com.bbs.financial.controller;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.bbs.Result;
+import com.bbs.financial.entity.${ClassName};
+import com.bbs.financial.service.${ClassName}Service;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+import static com.bbs.Result.success;
+
+/**
+ * ${functionName}Controller
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("/${businessName}")
+public class ${ClassName}Controller {
+
+    @Resource
+    private ${ClassName}Service ${className}Service;
+
+    /**
+     * 查询${functionName}列表
+     */
+//    @RequiresPermissions("${permissionPrefix}:list")
+    @GetMapping("/list")
+#if($table.crud)
+    public Result<Page<${ClassName}>> list(${ClassName} ${className}, @RequestParam Integer current, @RequestParam Integer size)
+    {
+        return success(${className}Service.page(new Page<>(current, size), new QueryWrapper<>(${className})));
+    }
+#elseif($table.tree)
+    public Result<${ClassName}> list(${ClassName} ${className})
+    {
+        List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
+        return success(list);
+    }
+#end
+
+    /**
+     * 获取${functionName}详细信息
+     */
+//    @RequiresPermissions("${permissionPrefix}:query")
+    @GetMapping(value = "/{${pkColumn.javaField}}")
+    public Result<${ClassName}> getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
+    {
+        return success(${className}Service.getById(${pkColumn.javaField}));
+    }
+
+    /**
+     * 新增${functionName}
+     */
+//    @RequiresPermissions("${permissionPrefix}:add")
+//    @Log(title = "${functionName}", businessType = BusinessType.INSERT)
+    @PostMapping
+    public Result<Boolean> add(@RequestBody ${ClassName} ${className})
+    {
+        ${className}Service.save(${className});
+        return success();
+    }
+
+    /**
+     * 修改${functionName}
+     */
+//    @RequiresPermissions("${permissionPrefix}:edit")
+//    @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
+    @PutMapping
+    public Result<Boolean> edit(@RequestBody ${ClassName} ${className})
+    {
+        ${className}Service.updateById(${className});
+        return success();
+    }
+
+    /**
+     * 删除${functionName}
+     */
+//    @RequiresPermissions("${permissionPrefix}:remove")
+    //   @Log(title = "${functionName}", businessType = BusinessType.DELETE)
+	@DeleteMapping("/{${pkColumn.javaField}s}")
+    public Result<Boolean> remove(@PathVariable List<${pkColumn.javaType}> ${pkColumn.javaField}s)
+    {
+        ${className}Service.getBaseMapper().deleteBatchIds(${pkColumn.javaField}s);
+        return success();
+    }
+}

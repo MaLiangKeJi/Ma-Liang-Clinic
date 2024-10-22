@@ -1,0 +1,134 @@
+server:
+  port: 8084
+  error:
+    include-message: always
+spring:
+  application:
+    name: auth
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/ml_auth?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 25
+      max-wait: 1000
+      time-between-eviction-runs-millis: 60000
+      validation-query: SELECT 1 as nums
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      filters: stat # 拦截sql的开关
+    initialization-mode: always
+  redis:
+    host: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    port: 6551
+    password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    timeout: 10000
+    redisson:
+      config:
+        singleServerConfig:
+          idleConnectionTimeout: 10000
+          connectTimeout: 10000
+          timeout: 3000
+          retryAttempts: 3
+          retryInterval: 1500
+          address: redis://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:6551
+          password: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          clientName: null
+          keepAlive: false
+          tcpNoDelay: false
+        threads: 16
+        nettyThreads: 32
+        transportMode: "NIO"
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+logging:
+  level:
+    com.bbs.auth: debug
+    com.baomidou: debug
+  file:
+    path: logs/auth
+  config: classpath:logback-spring.xml
+jwt:
+  #  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+  name: Authorization
+  token: 123456
+  expireTime: 7
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    logfile:
+      enabled: true
+      external-file: /home/auth/logs/auth
+      info-file: /home/auth/logs/auth/info
+      error-file: /home/auth/logs/auth/error
+    health:
+      show-details: always
+
+
+dubbo:
+  application:
+    name: auth
+    qos-enable: false
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:8848?namespace=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    timeout: 50000
+    parameters:
+      blockUntilConnectedWait: 50
+  config-center:
+    address: nacos://123.60.155.123:8848
+  metadata-report:
+    address: nacos://123.60.155.123:8848
+code:
+  alibaba:
+    endpoint: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    access:
+      key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    sign: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    template: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  feigeyun:
+    apikey: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    sign: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    template: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+wx:
+  oa:
+    appId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    appSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  pay:
+    merchantId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    privateKeyPath: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    merchantSerialNumber: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    apiV3Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+filter:
+  bloom:
+    phone:
+      name: bloom:phone
+      expected: 100000
+      probability: 0.0001
+      threshold: 0.75
+user:
+  register:
+    inviteValidDay: 365
+    try:
+      day: 7
+api:
+  management:
+    permission:
+      code: fdlnfkergb62utku
